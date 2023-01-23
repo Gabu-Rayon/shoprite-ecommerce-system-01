@@ -14,7 +14,7 @@
         
         $delete_cat_id = $_GET['delete_cat'];
         
-        $delete_cat = "delete from categories where cat_id='$delete_cat_id'";
+        $delete_cat = "DELETE FROM categories WHERE cat_id='$delete_cat_id'";
         
         $run_delete = mysqli_query($con,$delete_cat);
         

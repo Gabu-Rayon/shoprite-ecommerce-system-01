@@ -14,7 +14,7 @@
         
         $delete_term_id = $_GET['delete_term'];
         
-        $delete_term = "delete from terms where term_id='$delete_term_id'";
+        $delete_term = "DELETE FROM terms WHERE term_id='$delete_term_id'";
         
         $run_delete_term = mysqli_query($con,$delete_term);
         

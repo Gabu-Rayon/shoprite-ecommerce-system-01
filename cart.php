@@ -482,7 +482,7 @@
                                 <!-- tr Begin -->
 
                                 <td> Order All Sub-Total </td>
-                                <th> $<?php echo $total; ?> </th>
+                                <th> Ksh<?php echo $total; ?> </th>
 
                             </tr><!-- tr Finish -->
 
@@ -490,7 +490,7 @@
                                 <!-- tr Begin -->
 
                                 <td> Shipping and Handling </td>
-                                <td> $0 </td>
+                                <td> Ksh0 </td>
 
                             </tr><!-- tr Finish -->
 
@@ -498,7 +498,7 @@
                                 <!-- tr Begin -->
 
                                 <td> Tax </td>
-                                <th> $0 </th>
+                                <th> Ksh0 </th>
 
                             </tr><!-- tr Finish -->
 
@@ -506,7 +506,7 @@
                                 <!-- tr Begin -->
 
                                 <td> Total </td>
-                                <th> $<?php echo $total; ?> </th>
+                                <th> Ksh<?php echo $total; ?> </th>
 
                             </tr><!-- tr Finish -->
 
@@ -546,7 +546,7 @@ $(document).ready(function(data) {
             $.ajax({
 
                 url: "change.php",
-                method: "POST";
+                method: "POST",
                 data: {
                     id: id,
                     quantity: quantity

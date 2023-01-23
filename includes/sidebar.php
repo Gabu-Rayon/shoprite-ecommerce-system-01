@@ -60,48 +60,59 @@ if(isset($_REQUEST['p_cat'])&&is_array($_REQUEST['p_cat'])){
 
 ?>
 
-<div class="panel panel-default sidebar-menu"><!-- panel panel-default sidebar-menu Begin -->
-    <div class="panel-heading"><!-- panel-heading Begin -->
+<div class="panel panel-default sidebar-menu">
+    <!-- panel panel-default sidebar-menu Begin -->
+    <div class="panel-heading">
+        <!-- panel-heading Begin -->
         <h3 class="panel-title">
             Manufacturers
 
-            <div class="pull-right"><!-- pull-right Begin -->
-            
+            <div class="pull-right">
+                <!-- pull-right Begin -->
+
                 <a href="JavaScript:Void(0);" style="color:black;">
-                
-                    <span class="nav-toggle hide-show"><!-- nav-toggle hide-show Begin -->
-                    
+
+                    <span class="nav-toggle hide-show">
+                        <!-- nav-toggle hide-show Begin -->
+
                         Hide
-                    
+
                     </span><!-- nav-toggle hide-show Finish -->
-                
+
                 </a>
-            
+
             </div><!-- pull-right finish -->
 
         </h3>
     </div><!-- panel-heading Finish -->
 
-    <div class="panel-collapse collapse-data"><!-- panel-collapse collapse-data Begin -->
-    
-        <div class="panel-body"><!-- panel-body 1 Begin -->
-            <div class="input-group"><!-- input-group Begin -->
-                <input type="text" class="form-control" id="dev-table-filter" data-filters="#dev-manufacturer" data-action="filter" placeholder="Filter Manufacturer">
+    <div class="panel-collapse collapse-data">
+        <!-- panel-collapse collapse-data Begin -->
 
-                    <a class="input-group-addon"><!-- input-group-addon Begin -->
-                    
-                        <i class="fa fa-search"></i>
-                        
-                    </a><!-- input-group-addon Finish -->
+        <div class="panel-body">
+            <!-- panel-body 1 Begin -->
+            <div class="input-group">
+                <!-- input-group Begin -->
+                <input type="text" class="form-control" id="dev-table-filter" data-filters="#dev-manufacturer"
+                    data-action="filter" placeholder="Filter Manufacturer">
+
+                <a class="input-group-addon">
+                    <!-- input-group-addon Begin -->
+
+                    <i class="fa fa-search"></i>
+
+                </a><!-- input-group-addon Finish -->
 
             </div><!-- input-group Finish -->
-            </div><!-- panel-body 1 Finish -->
-        <div class="panel-body scroll-menu"><!-- panel-body 2 Begin -->
-            <ul class="nav nav-pills nav-stacked category-menu" id="dev-manufacturer"><!-- nav nav-pills nav-stacked category-menu Begin -->
-                
+        </div><!-- panel-body 1 Finish -->
+        <div class="panel-body scroll-menu">
+            <!-- panel-body 2 Begin -->
+            <ul class="nav nav-pills nav-stacked category-menu" id="dev-manufacturer">
+                <!-- nav nav-pills nav-stacked category-menu Begin -->
+
                 <?php 
                 
-                $get_manufacturer = "select * from manufacturers where manufacturer_top='yes'";
+                $get_manufacturer = "SELECT * FROM  manufacturers WHERE manufacturer_top='yes'";
                 $run_manufacturer = mysqli_query($con,$get_manufacturer);
 
                 while($row_manufacturer=mysqli_fetch_array($run_manufacturer)){
@@ -147,7 +158,7 @@ if(isset($_REQUEST['p_cat'])&&is_array($_REQUEST['p_cat'])){
 
                 }
                 
-                $get_manufacturer = "select * from manufacturers where manufacturer_top='no'";
+                $get_manufacturer = "SELECT * FROM  manufacturers WHERE manufacturer_top='no'";
                 $run_manufacturer = mysqli_query($con,$get_manufacturer);
 
                 while($row_manufacturer=mysqli_fetch_array($run_manufacturer)){
@@ -194,53 +205,64 @@ if(isset($_REQUEST['p_cat'])&&is_array($_REQUEST['p_cat'])){
                 }
                 
                 ?>
-                
+
             </ul><!-- nav nav-pills nav-stacked category-menu Finish -->
         </div><!-- panel-body 2 Finish -->
 
     </div><!-- panel-collapse collapse-data Finish -->
-    
+
 </div><!-- panel panel-default sidebar-menu Finish -->
 
-<div class="panel panel-default sidebar-menu"><!-- panel panel-default sidebar-menu Begin -->
-    <div class="panel-heading"><!-- panel-heading Begin -->
+<div class="panel panel-default sidebar-menu">
+    <!-- panel panel-default sidebar-menu Begin -->
+    <div class="panel-heading">
+        <!-- panel-heading Begin -->
         <h3 class="panel-title">
             Categories
 
-            <div class="pull-right"><!-- pull-right Begin -->
-            
+            <div class="pull-right">
+                <!-- pull-right Begin -->
+
                 <a href="JavaScript:Void(0);" style="color:black;">
-                
-                    <span class="nav-toggle hide-show"><!-- nav-toggle hide-show Begin -->
-                    
+
+                    <span class="nav-toggle hide-show">
+                        <!-- nav-toggle hide-show Begin -->
+
                         Hide
-                    
+
                     </span><!-- nav-toggle hide-show Finish -->
-                
+
                 </a>
-            
+
             </div><!-- pull-right finish -->
 
         </h3>
     </div><!-- panel-heading Finish -->
 
-    <div class="panel-collapse collapse-data"><!-- panel-collapse collapse-data Begin -->
-    
-        <div class="panel-body"><!-- panel-body 1 Begin -->
-            <div class="input-group"><!-- input-group Begin -->
-                <input type="text" class="form-control" id="dev-table-filter" data-filters="#dev-cat" data-action="filter" placeholder="Filter Categories">
+    <div class="panel-collapse collapse-data">
+        <!-- panel-collapse collapse-data Begin -->
 
-                    <a class="input-group-addon"><!-- input-group-addon Begin -->
-                    
-                        <i class="fa fa-search"></i>
-                        
-                    </a><!-- input-group-addon Finish -->
+        <div class="panel-body">
+            <!-- panel-body 1 Begin -->
+            <div class="input-group">
+                <!-- input-group Begin -->
+                <input type="text" class="form-control" id="dev-table-filter" data-filters="#dev-cat"
+                    data-action="filter" placeholder="Filter Categories">
+
+                <a class="input-group-addon">
+                    <!-- input-group-addon Begin -->
+
+                    <i class="fa fa-search"></i>
+
+                </a><!-- input-group-addon Finish -->
 
             </div><!-- input-group Finish -->
-            </div><!-- panel-body 1 Finish -->
-        <div class="panel-body scroll-menu"><!-- panel-body 2 Begin -->
-            <ul class="nav nav-pills nav-stacked category-menu" id="dev-cat"><!-- nav nav-pills nav-stacked category-menu Begin -->
-                
+        </div><!-- panel-body 1 Finish -->
+        <div class="panel-body scroll-menu">
+            <!-- panel-body 2 Begin -->
+            <ul class="nav nav-pills nav-stacked category-menu" id="dev-cat">
+                <!-- nav nav-pills nav-stacked category-menu Begin -->
+
                 <?php 
                 
                 $get_cat = "SELECT * FROM  categories WHERE  cat_top='yes'";
@@ -289,7 +311,7 @@ if(isset($_REQUEST['p_cat'])&&is_array($_REQUEST['p_cat'])){
 
                 }
                 
-                $get_cat = "select * from categories where cat_top='no'";
+                $get_cat = "SELECT * FROM  categories WHERE cat_top='no'";
                 $run_cat = mysqli_query($con,$get_cat);
 
                 while($row_cat=mysqli_fetch_array($run_cat)){
@@ -336,57 +358,68 @@ if(isset($_REQUEST['p_cat'])&&is_array($_REQUEST['p_cat'])){
                 }
                 
                 ?>
-                
+
             </ul><!-- nav nav-pills nav-stacked category-menu Finish -->
         </div><!-- panel-body 2 Finish -->
 
     </div><!-- panel-collapse collapse-data Finish -->
-    
+
 </div><!-- panel panel-default sidebar-menu Finish -->
 
-<div class="panel panel-default sidebar-menu"><!-- panel panel-default sidebar-menu Begin -->
-    <div class="panel-heading"><!-- panel-heading Begin -->
+<div class="panel panel-default sidebar-menu">
+    <!-- panel panel-default sidebar-menu Begin -->
+    <div class="panel-heading">
+        <!-- panel-heading Begin -->
         <h3 class="panel-title">
             Product Categories
 
-            <div class="pull-right"><!-- pull-right Begin -->
-            
+            <div class="pull-right">
+                <!-- pull-right Begin -->
+
                 <a href="JavaScript:Void(0);" style="color:black;">
-                
-                    <span class="nav-toggle hide-show"><!-- nav-toggle hide-show Begin -->
-                    
+
+                    <span class="nav-toggle hide-show">
+                        <!-- nav-toggle hide-show Begin -->
+
                         Hide
-                    
+
                     </span><!-- nav-toggle hide-show Finish -->
-                
+
                 </a>
-            
+
             </div><!-- pull-right finish -->
 
         </h3>
     </div><!-- panel-heading Finish -->
 
-    <div class="panel-collapse collapse-data"><!-- panel-collapse collapse-data Begin -->
-    
-        <div class="panel-body"><!-- panel-body 1 Begin -->
-            <div class="input-group"><!-- input-group Begin -->
-                <input type="text" class="form-control" id="dev-table-filter" data-filters="#dev-p-cat" data-action="filter" placeholder="Filter Product Categories">
+    <div class="panel-collapse collapse-data">
+        <!-- panel-collapse collapse-data Begin -->
 
-                    <a class="input-group-addon"><!-- input-group-addon Begin -->
-                    
-                        <i class="fa fa-search"></i>
-                        
-                    </a><!-- input-group-addon Finish -->
+        <div class="panel-body">
+            <!-- panel-body 1 Begin -->
+            <div class="input-group">
+                <!-- input-group Begin -->
+                <input type="text" class="form-control" id="dev-table-filter" data-filters="#dev-p-cat"
+                    data-action="filter" placeholder="Filter Product Categories">
+
+                <a class="input-group-addon">
+                    <!-- input-group-addon Begin -->
+
+                    <i class="fa fa-search"></i>
+
+                </a><!-- input-group-addon Finish -->
 
             </div><!-- input-group Finish -->
-            </div><!-- panel-body 1 Finish -->
+        </div><!-- panel-body 1 Finish -->
 
-        <div class="panel-body scroll-menu"><!-- panel-body 2 Begin -->
-            <ul class="nav nav-pills nav-stacked category-menu" id="dev-p-cat"><!-- nav nav-pills nav-stacked category-menu Begin -->
-                
+        <div class="panel-body scroll-menu">
+            <!-- panel-body 2 Begin -->
+            <ul class="nav nav-pills nav-stacked category-menu" id="dev-p-cat">
+                <!-- nav nav-pills nav-stacked category-menu Begin -->
+
                 <?php 
                 
-                $get_p_cat = "select * from product_categories where p_cat_top='yes'";
+                $get_p_cat = "SELECT * FROM  product_categories WHERE p_cat_top='yes'";
                 $run_p_cat = mysqli_query($con,$get_p_cat);
 
                 while($row_p_cat=mysqli_fetch_array($run_p_cat)){
@@ -432,7 +465,7 @@ if(isset($_REQUEST['p_cat'])&&is_array($_REQUEST['p_cat'])){
 
                 }
                 
-                $get_p_cat = "select * from product_categories where p_cat_top='no'";
+                $get_p_cat = "SELECT * FROM  product_categories WHERE p_cat_top='no'";
                 $run_p_cat = mysqli_query($con,$get_p_cat);
 
                 while($row_p_cat=mysqli_fetch_array($run_p_cat)){
@@ -477,10 +510,10 @@ if(isset($_REQUEST['p_cat'])&&is_array($_REQUEST['p_cat'])){
                 }
                 
                 ?>
-                
+
             </ul><!-- nav nav-pills nav-stacked category-menu Finish -->
         </div><!-- panel-body 2 Finish -->
 
     </div><!-- panel-collapse collapse-data Finish -->
-    
+
 </div><!-- panel panel-default sidebar-menu Finish -->

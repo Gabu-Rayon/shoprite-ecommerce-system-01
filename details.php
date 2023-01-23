@@ -13,7 +13,7 @@ include("functions/functions.php");
     
     $product_id = $_GET['pro_id'];
     
-    $get_product = "select * from products where product_url='$product_id'";
+    $get_product = "SELECT * FROM  products WHERE product_url='$product_id'";
     
     $run_product = mysqli_query($con,$get_product);
 
@@ -62,7 +62,7 @@ include("functions/functions.php");
 
     }
     
-    $get_p_cat = "select * from product_categories where p_cat_id='$p_cat_id'";
+    $get_p_cat = "SELECT *FROM  product_categories WHERE p_cat_id='$p_cat_id'";
     
     $run_p_cat = mysqli_query($con,$get_p_cat);
     
@@ -78,7 +78,7 @@ include("functions/functions.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>M-Dev Store</title>
+    <title>M-Gibsons Ecommerce Store</title>
     <link rel="stylesheet" href="styles/bootstrap-337.min.css">
     <link rel="stylesheet" href="font-awsome/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/style.css">
@@ -537,7 +537,7 @@ include("functions/functions.php");
 
                     <?php 
                    
-                    $get_products = "select * from products order by rand() LIMIT 0,3";
+                    $get_products = "SELECT * FROM products ORDER BY rand() LIMIT 0,3";
                    
                     $run_products = mysqli_query($con,$get_products);
                    
@@ -559,7 +559,7 @@ include("functions/functions.php");
                     
                     $manufacturer_id = $row_products['manufacturer_id'];
             
-                    $get_manufacturer = "select * from manufacturers where manufacturer_id='$manufacturer_id'";
+                    $get_manufacturer = "SELECT * FROM manufacturers WHERE manufacturer_id='$manufacturer_id'";
             
                     $run_manufacturer = mysqli_query($db,$get_manufacturer);
             

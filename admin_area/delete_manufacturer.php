@@ -14,7 +14,7 @@
         
         $delete_id = $_GET['delete_manufacturer'];
         
-        $delete_manufacturer = "delete from manufacturers where manufacturer_id='$delete_id'";
+        $delete_manufacturer = "DELETE FROM manufacturers WHERE manufacturer_id='$delete_id'";
         
         $run_delete = mysqli_query($con,$delete_manufacturer);
         
