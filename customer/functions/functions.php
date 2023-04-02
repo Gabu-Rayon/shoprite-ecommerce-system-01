@@ -1,6 +1,6 @@
 <?php 
 
-$db = mysqli_connect("localhost","root","","ecom_store");
+$db = mysqli_connect("localhost","root","","shoprite-system-01-db");
 
 /// begin getRealIpUser functions ///
 
@@ -510,7 +510,7 @@ function total_price(){
         
     }
     
-    echo "$" . $total;
+    echo "Ksh " . $total;
     
 }
 

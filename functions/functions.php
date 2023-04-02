@@ -98,11 +98,11 @@ function getPro()
         $manufacturer_title = $row_manufacturer['manufacturer_title'];
 
         if ($pro_label == "sale") {
-            $product_price = " <del> $ $pro_price </del> ";
+            $product_price = " <del> Ksh $pro_price </del> ";
 
-            $product_sale_price = "/ $ $pro_sale_price ";
+            $product_sale_price = "/ Ksh $pro_sale_price ";
         } else {
-            $product_price = "  $ $pro_price  ";
+            $product_price = "  Ksh $pro_price  ";
 
             $product_sale_price = "";
         }
@@ -288,7 +288,7 @@ function total_price()
         $total += $sub_total;
     }
 
-    echo "$" . $total;
+    echo "Ksh   " . $total;
 }
 
 /// finish total_price functions ///
@@ -375,11 +375,11 @@ function getProducts()
         $manufacturer_title = $row_manufacturer['manufacturer_title'];
 
         if ($pro_label == "sale") {
-            $product_price = " <del> $ $pro_price </del> ";
+            $product_price = " <del> Ksh $pro_price </del> ";
 
-            $product_sale_price = "/ $ $pro_sale_price ";
+            $product_sale_price = "/ Ksh $pro_sale_price ";
         } else {
-            $product_price = "  $ $pro_price  ";
+            $product_price = "  Ksh $pro_price  ";
 
             $product_sale_price = "";
         }

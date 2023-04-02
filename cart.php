@@ -154,7 +154,7 @@
 
                                     <td>
 
-                                        $<?php echo $sub_total; ?>
+                                        Ksh <?php echo $sub_total; ?>
 
                                     </td>
 
@@ -171,7 +171,7 @@
                                     <!-- tr Begin -->
 
                                     <th colspan="5">Total</th>
-                                    <th colspan="2">$<?php echo $total; ?></th>
+                                    <th colspan="2">Ksh <?php echo $total; ?></th>
 
                                 </tr><!-- tr Finish -->
 
@@ -365,12 +365,12 @@
                        
                     if($pro_label == "sale"){
             
-                        $product_price = "<del><i> $ $pro_price </i> </del>";
+                        $product_price = "<del><i> Ksh $pro_price </i> </del>";
             
-                        $product_sale_price = "/ $ $pro_sale_price";
+                        $product_sale_price = "/ Ksh $pro_sale_price";
                     }else{
                          
-                      $product_price = "$ $pro_price " ;
+                      $product_price = "Ksh $pro_price " ;
             
                         $product_sale_price = " ";
                     }

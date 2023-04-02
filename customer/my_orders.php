@@ -90,7 +90,7 @@
             <tr><!--  tr Begin  -->
                 
                 <th> <?php echo $i; ?> </th>
-                <td> $<?php echo $due_amount; ?> </td>
+                <td> Ksh <?php echo $due_amount; ?> </td>
                 <td> <?php echo $invoice_no; ?> </td>
                 <td> <?php echo $qty; ?> </td>
                 <td> <?php echo $size; ?> </td>
