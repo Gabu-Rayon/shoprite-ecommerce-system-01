@@ -29,7 +29,7 @@
 
                 <?php 
                    
-                   $get_slides = "SELECT * FROM slider LIMIT 0,1";
+                   $get_slides = "select * from slider LIMIT 0,1";
                    
                    $run_slides = mysqli_query($con,$get_slides);
                    
@@ -55,7 +55,7 @@
                        
                    }
                    
-                   $get_slides = "SELECT * FROM slider LIMIT 1,3";
+                   $get_slides = "select * from slider LIMIT 1,3";
                    
                    $run_slides = mysqli_query($con,$get_slides);
                    
@@ -118,7 +118,7 @@
 
             <?php 
            
-           $get_boxes = "SELECT * FROM boxes_section";
+           $get_boxes = "select * from boxes_section";
            $run_boxes = mysqli_query($con,$get_boxes);
 
            while($run_boxes_section=mysqli_fetch_array($run_boxes)){

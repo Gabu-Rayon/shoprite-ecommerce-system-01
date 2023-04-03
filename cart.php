@@ -39,7 +39,7 @@
                        
                        $ip_add = getRealIpUser();
                        
-                       $select_cart = "select * from cart where ip_add='$ip_add'";
+                       $select_cart = "SELECT * FROM  cart where ip_add='$ip_add'";
                        
                        $run_cart = mysqli_query($con,$select_cart);
                        
@@ -84,19 +84,22 @@
                                      $pro_id = $row_cart['p_id'];
                                        
                                      $pro_size = $row_cart['size'];
+                                     
                                        
                                      $pro_qty = $row_cart['qty'];
 
                                      $pro_sale = $row_cart['p_price'];
                                        
 
-                                       $get_products = "select * from products where product_id='$pro_id'";
+                                       $get_products = "SELECT * FROM  products where product_id='$pro_id'";
                                        
                                        $run_products = mysqli_query($con,$get_products);
                                        
                                        while($row_products = mysqli_fetch_array($run_products)){
                                            
                                            $product_title = $row_products['product_title'];
+
+                                           $pro_url = $row_products['product_url'];
                                            
                                            $product_img1 = $row_products['product_img1'];
                                            
@@ -123,7 +126,7 @@
 
                                     <td>
 
-                                        <a href="details.php?pro_id=<?php echo $pro_id; ?>">
+                                        <a href="<?php echo $pro_url; ?>">
                                             <?php echo $product_title; ?> </a>
 
                                     </td>
@@ -136,8 +139,8 @@
 
                                     <td>
 
-                                        <?php echo $only_price; ?>
-
+                                        Ksh <?php echo $only_price; ?><br>
+                                        <small>sale price: <i>Ksh <?php echo $pro_sale; ?></i></small>
                                     </td>
 
                                     <td>
@@ -302,7 +305,7 @@
                         
                         foreach($_POST['remove'] as $remove_id){
                             
-                            $delete_product = "delete from cart where p_id='$remove_id'";
+                            $delete_product = "DELETE FROM cart where p_id='$remove_id'";
                             
                             $run_delete = mysqli_query($con,$delete_product);
                             
@@ -339,62 +342,69 @@
                    $run_products = mysqli_query($con,$get_products);
                    
                    while($row_products=mysqli_fetch_array($run_products)){
-        
+                       
                     $pro_id = $row_products['product_id'];
-                    
+        
                     $pro_title = $row_products['product_title'];
                     
                     $pro_price = $row_products['product_price'];
             
                     $pro_sale_price = $row_products['product_sale'];
+
+                    $pro_url = $row_products['product_url'];
                     
                     $pro_img1 = $row_products['product_img1'];
-            
+                    
                     $pro_label = $row_products['product_label'];
-            
+                    
                     $manufacturer_id = $row_products['manufacturer_id'];
-                          
-                    //GET manufacturer  title per ID
-                    $get_manufacturer = "SELECT * FROM manufacturers WHERE manufacturer_id = '$manufacturer_id'";
+            
+                    $get_manufacturer = "select * from manufacturers where manufacturer_id='$manufacturer_id'";
             
                     $run_manufacturer = mysqli_query($db,$get_manufacturer);
             
                     $row_manufacturer = mysqli_fetch_array($run_manufacturer);
             
                     $manufacturer_title = $row_manufacturer['manufacturer_title'];
-                       
+            
                     if($pro_label == "sale"){
             
-                        $product_price = "<del><i> Ksh $pro_price </i> </del>";
+                        $product_price = " <del> Ksh $pro_price </del> ";
             
-                        $product_sale_price = "/ Ksh $pro_sale_price";
+                        $product_sale_price = "/ Ksh $pro_sale_price ";
+            
                     }else{
-                         
-                      $product_price = "Ksh $pro_price " ;
             
-                        $product_sale_price = " ";
+                        $product_price = "  Ksh $pro_price  ";
+            
+                        $product_sale_price = "";
+            
                     }
             
-                    if($pro_label == " "){
+                    if($pro_label == ""){
             
-                    }else {
+                    }else{
+            
                         $product_label = "
-                           
-                           <a href='#' class='label $pro_label'>
-                             <div class='theLabel'>$pro_label </div>
-                             <div class='labelBackground'> </div>
-                           </a>
-                           
+                        
+                            <a href='#' class='label $pro_label'>
+                            
+                                <div class='theLabel'> $pro_label </div>
+                                <div class='labelBackground'>  </div>
+                            
+                            </a>
+                        
                         ";
+            
                     }
                     
                     echo "
                     
                     <div class='col-md-3 col-sm-6 center-responsive'>
                     
-                        <div class='product same-height'>
+                        <div class='product'>
                         
-                            <a href='details.php?pro_id=$pro_id'>
+                            <a href='$pro_url'>
                             
                                 <img class='img-responsive' src='admin_area/product_images/$pro_img1'>
                             
@@ -402,13 +412,15 @@
                             
                             <div class='text'>
             
-                              <center>
-                                 <p class='btn btn-primary'>$manufacturer_title</p>
-                              </center>
-            
+                            <center>
+                            
+                                <p class='btn btn-primary'> $manufacturer_title </p>
+                            
+                            </center>
+                            
                                 <h3>
                         
-                                    <a href='details.php?pro_id=$pro_id'>
+                                    <a href='$pro_url'>
             
                                         $pro_title
             
@@ -418,15 +430,19 @@
                                 
                                 <p class='price'>
                                 
-                                    $product_price &nbsp;  $product_sale_price
+                                $product_price &nbsp;$product_sale_price
                                 
                                 </p>
                                 
                                 <p class='button'>
                                 
-                                   
+                                    <a class='btn btn-default' href='$pro_url'>
+            
+                                        View Details
+            
+                                    </a>
                                 
-                                    <a class='btn btn-primary' href='details.php?pro_id=$pro_id'>
+                                    <a class='btn btn-primary' href='$pro_url'>
             
                                         <i class='fa fa-shopping-cart'></i> Add to Cart
             
@@ -435,17 +451,21 @@
                                 </p>
                             
                             </div>
-                           $product_label
+            
+                            $product_label
+                        
                         </div>
                     
                     </div>
                     
                     ";
-                    
-                }
+                       
+                   }
+                   
                    ?>
 
             </div><!-- #row same-heigh-row Finish -->
+            <!-- #row same-heigh-row Finish -->
 
         </div><!-- col-md-9 Finish -->
 

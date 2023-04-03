@@ -1,4 +1,4 @@
-<?php 
+<?php  
 
 session_start();
 
@@ -13,7 +13,7 @@ include("functions/functions.php");
     
     $product_id = $_GET['pro_id'];
     
-    $get_product = "SELECT * FROM  products WHERE product_url='$product_id'";
+    $get_product = "select * from products where product_url='$product_id'";
     
     $run_product = mysqli_query($con,$get_product);
 
@@ -36,6 +36,10 @@ include("functions/functions.php");
     $pro_sale_price = $row_products['product_sale'];
     
     $pro_desc = $row_products['product_desc'];
+        
+    $pro_features = $row_products['product_features'];
+        
+    $pro_video = $row_products['product_video'];
     
     $pro_img1 = $row_products['product_img1'];
     
@@ -62,7 +66,7 @@ include("functions/functions.php");
 
     }
     
-    $get_p_cat = "SELECT *FROM  product_categories WHERE p_cat_id='$p_cat_id'";
+    $get_p_cat = "select * from product_categories where p_cat_id='$p_cat_id'";
     
     $run_p_cat = mysqli_query($con,$get_p_cat);
     
@@ -78,14 +82,13 @@ include("functions/functions.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>M-Gibsons Ecommerce Store</title>
+    <title>M-Dev Store</title>
     <link rel="stylesheet" href="styles/bootstrap-337.min.css">
     <link rel="stylesheet" href="font-awsome/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
-
     <div id="top">
         <!-- Top Begin -->
 
@@ -171,8 +174,8 @@ include("functions/functions.php");
                 <a href="index.php" class="navbar-brand home">
                     <!-- navbar-brand home Begin -->
 
-                    <img src="images/ecom-store-logo.png" alt="M-dev-Store Logo" class="hidden-xs">
-                    <img src="images/ecom-store-logo-mobile.png" alt="M-dev-Store Logo Mobile" class="visible-xs">
+                    <img src="images/logo_profile-2.png" alt="M-dev-Store Logo" class="hidden-xs">
+                    <img src="images/logo_profile-2.png" alt="M-dev-Store Logo Mobile" class="visible-xs">
 
                 </a><!-- navbar-brand home Finish -->
 
@@ -380,10 +383,7 @@ include("functions/functions.php");
                             <!-- box Begin -->
                             <h1 class="text-center"> <?php echo $pro_title; ?> </h1>
 
-                            <?php add_cart(); ?>
-
-                            <form action="details.php?add_cart=<?php echo $product_id; ?>" class="form-horizontal"
-                                method="post">
+                            <form class="form-horizontal" method="post">
                                 <!-- form-horizontal Begin -->
                                 <div class="form-group">
                                     <!-- form-group Begin -->
@@ -416,7 +416,7 @@ include("functions/functions.php");
                                             oninvalid="setCustomValidity('Must pick 1 size for the product')">
                                             <!-- form-control Begin -->
 
-                                            <option disabled selected>Select a Size</option>
+                                            <option value="" disabled selected>Select a Size</option>
                                             <option>Small</option>
                                             <option>Medium</option>
                                             <option>Large</option>
@@ -434,9 +434,9 @@ include("functions/functions.php");
 
                                             <p class='price'>
 
-                                            PRICE: <del> $$pro_price</del><br/>
+                                            <small>PRICE: <del>Ksh $pro_price</del><br/></small>
 
-                                            SALE: $    $pro_sale_price
+                                            SALE: Ksh    $pro_sale_price
 
                                             </p>
 
@@ -458,10 +458,71 @@ include("functions/functions.php");
                                
                                ?>
 
-                                <p class="text-center buttons"><button class="btn btn-primary i fa fa-shopping-cart">
-                                        Add to cart</button></p>
+                                <p class="text-center buttons"><button type="submit" name="add_cart"
+                                        class="btn btn-primary i fa fa-shopping-cart"> Add to cart</button></p>
 
                             </form><!-- form-horizontal Finish -->
+
+                            <?php 
+                           
+                           if(isset($_POST['add_cart'])){
+        
+                            $ip_add = getRealIpUser();
+        
+                            $pro_id = $row_products['product_id'];
+                            
+                            $p_id = $pro_id;
+                            
+                            $product_qty = $_POST['product_qty'];
+                            
+                            $product_size = $_POST['product_size'];
+        
+                            $pro_url = $row_products['product_url'];
+                            
+                            $check_product = "select * from cart where ip_add='$ip_add' AND p_id='$p_id'";
+                            
+                            $run_check = mysqli_query($con,$check_product);
+                            
+                            if(mysqli_num_rows($run_check)>0){
+                                
+                                echo "<script>alert('This product has already added in cart')</script>";
+                                echo "<script>window.open('$pro_url','_self')</script>";
+                                
+                            }else{
+                    
+                                $get_price ="select * from products where product_id='$p_id'";
+                    
+                                $run_price = mysqli_query($con,$get_price);
+                    
+                                $row_price = mysqli_fetch_array($run_price);
+                    
+                                $pro_price = $row_price['product_price'];
+                    
+                                $pro_sale = $row_price['product_sale'];
+                    
+                                $pro_label = $row_price['product_label'];
+                    
+                                if($pro_label == "sale"){
+                    
+                                    $product_price = $pro_sale;
+                    
+                                }else{
+                    
+                                    $product_price = $pro_price;
+                    
+                                }
+                                
+                                $query = "insert into cart (p_id,ip_add,qty,p_price,size) values ('$p_id','$ip_add','$product_qty','$product_price','$product_size')";
+                                
+                                $run_query = mysqli_query($con,$query);
+                                
+                                echo "<script>window.open('$pro_url','_self')</script>";
+                                
+                            }
+                            
+                        }
+                           
+                           ?>
 
                         </div><!-- box Finish -->
 
@@ -504,24 +565,66 @@ include("functions/functions.php");
 
                 <div class="box" id="details">
                     <!-- box Begin -->
+                    <!-- Tab Buttons Start -->
+                    <a data-toggle="tab" href="#descriptions" class="btn btn-primary tab">
 
-                    <h4>Product Details</h4>
+                        Product Descriptions
 
-                    <p>
+                    </a>
+                    <a data-toggle="tab" href="#features" class="btn btn-primary tab">
 
-                        <?php echo $pro_desc; ?>
+                        Product Features
 
-                    </p>
+                    </a>
+                    <a data-toggle="tab" href="#videos" class="btn btn-primary tab">
 
-                    <h4>Size</h4>
+                        Product Videos
 
-                    <ul>
-                        <li>Small</li>
-                        <li>Medium</li>
-                        <li>Large</li>
-                    </ul>
+                    </a>
+                    <!-- Tab Buttons End -->
 
-                    <hr>
+                    <hr style="margin-top:25px;">
+
+                    <!-- Tab Contents Start -->
+
+                    <div class="tab-content">
+
+                        <div class="tab-pane fade in active" id="descriptions">
+                            <!-- Tab-pane Start -->
+
+                            <p class="product_descriptions">
+
+                                <?php echo $pro_desc; ?>
+
+                            </p>
+
+                        </div> <!-- Tab-pane End -->
+
+                        <div class="tab-pane fade in" id="features">
+                            <!-- Tab-pane Start -->
+
+                            <p class="product_features">
+
+                                <?php echo $pro_features; ?>
+
+                            </p>
+
+                        </div> <!-- Tab-pane End -->
+
+                        <div class="tab-pane fade in" id="videos">
+                            <!-- Tab-pane Start -->
+
+                            <p class="product_videos">
+
+                                <?php echo $pro_video; ?>
+
+                            </p>
+
+                        </div> <!-- Tab-pane End -->
+
+                    </div>
+
+                    <!-- Tab Contents End -->
 
                 </div><!-- box Finish -->
 
@@ -537,7 +640,7 @@ include("functions/functions.php");
 
                     <?php 
                    
-                    $get_products = "SELECT * FROM products ORDER BY rand() LIMIT 0,3";
+                    $get_products = "select * from products order by rand() LIMIT 0,3";
                    
                     $run_products = mysqli_query($con,$get_products);
                    
@@ -559,7 +662,7 @@ include("functions/functions.php");
                     
                     $manufacturer_id = $row_products['manufacturer_id'];
             
-                    $get_manufacturer = "SELECT * FROM manufacturers WHERE manufacturer_id='$manufacturer_id'";
+                    $get_manufacturer = "select * from manufacturers where manufacturer_id='$manufacturer_id'";
             
                     $run_manufacturer = mysqli_query($db,$get_manufacturer);
             
@@ -569,13 +672,13 @@ include("functions/functions.php");
             
                     if($pro_label == "sale"){
             
-                        $product_price = " <del> $ $pro_price </del> ";
+                        $product_price = " <del> Ksh $pro_price </del> ";
             
-                        $product_sale_price = "/ $ $pro_sale_price ";
+                        $product_sale_price = "/ Ksh $pro_sale_price ";
             
                     }else{
             
-                        $product_price = "  $ $pro_price  ";
+                        $product_price = "  Ksh $pro_price  ";
             
                         $product_sale_price = "";
             
