@@ -448,7 +448,7 @@ include("functions/functions.php");
 
                                             <p class='price'>
 
-                                            PRICE: $ $pro_price
+                                            PRICE: Ksh $pro_price
 
                                             </p>
 
@@ -479,7 +479,7 @@ include("functions/functions.php");
         
                             $pro_url = $row_products['product_url'];
                             
-                            $check_product = "select * from cart where ip_add='$ip_add' AND p_id='$p_id'";
+                            $check_product = "SELECT * FROM cart WHERE ip_add='$ip_add' AND p_id='$p_id'";
                             
                             $run_check = mysqli_query($con,$check_product);
                             
@@ -512,7 +512,7 @@ include("functions/functions.php");
                     
                                 }
                                 
-                                $query = "insert into cart (p_id,ip_add,qty,p_price,size) values ('$p_id','$ip_add','$product_qty','$product_price','$product_size')";
+                                $query = "INSERT INTO cart (p_id,ip_add,qty,p_price,size) VALUES('$p_id','$ip_add','$product_qty','$product_price','$product_size')";
                                 
                                 $run_query = mysqli_query($con,$query);
                                 
